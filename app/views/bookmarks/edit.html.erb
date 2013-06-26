@@ -1,0 +1,6 @@
+<h2>Pridať záložku</h2>
+
+<%= labelled_form_for :bookmark, @bookmark do |form| %>
+    <%= render :partial => 'form', :object => form %>
+    <%= submit_tag l(:button_update) %>
+<% end %>
