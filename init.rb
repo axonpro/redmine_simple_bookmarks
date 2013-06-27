@@ -15,10 +15,8 @@ module RedmineSimpleBookmarks
   module Hooks
     class MenuHook < Redmine::Hook::ViewListener
       def view_layouts_base_html_head(context)
-        Redmine::MenuManager.map :top_menu do |menu|
-          User.current.bookmarks.each do |bookmark|
-            menu.push bookmark.name.to_sym, bookmark.url, :caption => bookmark.name, :last => true unless menu.find bookmark.name.to_sym
-          end
+        User.current.bookmarks.each do |bookmark|
+          bookmark.push_into_menu
         end
         nil
       end

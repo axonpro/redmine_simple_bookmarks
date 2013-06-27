@@ -7,13 +7,15 @@
 	  <thead><tr>
 	    <th><%= l(:field_name) %></th>
 	    <th><%= l(:field_url) %></th>
+	    <th><%= l(:field_placement) %></th>
 	    <th></th>
 	  </tr></thead>
 	  <tbody>
 	  <% bookmarks.each do |bookmark| %>
 	  <tr class="bookmark <%= cycle("odd", "even") %>">
 	    <td class="name"><%= link_to bookmark.name, edit_bookmark_path(bookmark) %></td>
-	    <td class="url"><%= link_to bookmark.url %></td>
+	    <td class="url"><%= bookmark.url %></td>
+	    <td class="placement"><%= bookmark.human_placement %></td>
 	    <td class="buttons">
 	    <%= link_to(l(:button_edit), edit_bookmark_path(bookmark), :class => 'icon icon-edit') %>
 	    <%= link_to(l(:button_delete), bookmark_path(bookmark), :confirm => l(:text_are_you_sure), :method => :delete, :class => 'icon icon-del') %>

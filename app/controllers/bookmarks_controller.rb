@@ -3,6 +3,8 @@
 
     before_filter :find_bookmark, :only => [:edit, :update, :destroy]
 
+    helper_method :placements
+
     def new
       @bookmark = Bookmark.new(:url => request.env["HTTP_REFERER"])
     end
@@ -18,7 +20,7 @@
     end
 
     def update
-      Redmine::MenuManager.map(:top_menu).delete(@bookmark.name.to_sym)
+      @bookmark.remove_from_menu
       if @bookmark.update_attributes(params[:bookmark])
         redirect_to my_account_path
       else
@@ -27,9 +29,13 @@
     end
 
     def destroy
-      Redmine::MenuManager.map(:top_menu).delete(@bookmark.name.to_sym)
+      @bookmark.remove_from_menu
       @bookmark.destroy
       redirect_to my_account_path
+    end
+
+    def placements
+      Bookmark.human_placements.map { |k, v| [v, k] }
     end
 
     private

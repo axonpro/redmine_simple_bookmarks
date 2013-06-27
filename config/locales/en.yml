@@ -1,4 +1,11 @@
 # English strings go here for Rails i18n
 en:
-    label_add_bookmark: "Add bookmark"
-    label_bookmarks: "Bookmarks"
+  label_add_bookmark: "Add bookmark"
+  label_bookmarks: "Bookmarks"
+  field_placement: "Placement"
+  enum_accessor:
+    placement:
+      top_menu: "Top menu"
+      account_menu: "Account menu"
+      application_menu: "Application menu"
+
